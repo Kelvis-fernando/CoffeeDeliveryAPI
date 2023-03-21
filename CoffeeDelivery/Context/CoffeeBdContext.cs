@@ -1,7 +1,6 @@
 ﻿
-using CoffeeDelivery.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+using CoffeeDelivery.Models;
 
 namespace CoffeeDelivery.Context
 {

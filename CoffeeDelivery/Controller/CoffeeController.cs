@@ -4,17 +4,26 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeeDelivery.Controller
 {
+    [ApiController]
+    [Route("[controller]")]
     public class CoffeeController : ControllerBase
     {
         private CoffeeDbContext _context;
-
+        public CoffeeController(CoffeeDbContext context) => _context = context;
 
         [HttpPost]
-        public IActionResult CreateCoffee([FromBody] Coffee coffee) 
+        public IActionResult CreateCoffee([FromBody] Coffee coffee)
         {
             _context.Coffee.Add(coffee);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(GetCoffeeById), new { Id = coffee.Id }, coffee);
+            return Ok();
+            // return CreatedAtAction(nameof(GetCoffeeById), new { Id = coffee.Id }, coffee);
+        }
+
+        [HttpGet]
+        public IEnumerable<Coffee> GetCoffee()
+        {
+            return _context.Coffee;
         }
 
         [HttpGet("{id}")]
