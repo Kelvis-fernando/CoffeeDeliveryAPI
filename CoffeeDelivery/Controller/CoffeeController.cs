@@ -16,8 +16,7 @@ namespace CoffeeDelivery.Controller
         {
             _context.Coffee.Add(coffee);
             _context.SaveChanges();
-            return Ok();
-            // return CreatedAtAction(nameof(GetCoffeeById), new { Id = coffee.Id }, coffee);
+            return CreatedAtAction(nameof(GetCoffeeById), new { Id = coffee.Id }, coffee);
         }
 
         [HttpGet]
@@ -35,6 +34,44 @@ namespace CoffeeDelivery.Controller
                 return Ok(coffee);
             }
             return NotFound();
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateCoffee([FromBody] Coffee updateMovie, int id )
+        {
+            Coffee coffee = _context.Coffee.FirstOrDefault(coffee => coffee.Id == id);
+            if (coffee == null)
+            {
+                return NotFound();
+            }
+
+            coffee.Name= updateMovie.Name;
+            coffee.Brand = updateMovie.Brand;
+            coffee.Price = updateMovie.Price;
+            coffee.Description = updateMovie.Description;
+            coffee.Classification = updateMovie.Classification;
+            coffee.Itensity = updateMovie.Itensity;
+            coffee.Notes = updateMovie.Notes;
+            coffee.Origin = updateMovie.Origin;
+            coffee.TypeToast = updateMovie.TypeToast;
+            coffee.Quantity = updateMovie.Quantity;
+
+            _context.SaveChanges();
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteCoffeeById(int id)
+        {
+            Coffee coffee = _context.Coffee.FirstOrDefault(coffee => coffee.Id == id);
+            if (coffee == null)
+            {
+                return NotFound();
+            }
+
+            _context.Coffee.Remove(coffee);
+            _context.SaveChanges();
+            return NoContent();
         }
     }
 }
