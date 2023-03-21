@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CoffeeDelivery.Controller
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("/v1/[controller]")]
     public class CoffeeController : ControllerBase
     {
         private CoffeeDbContext _context;
