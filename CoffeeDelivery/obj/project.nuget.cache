@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "RGHLzs2eyk5Og7TvnA11vKXOmrZXpSuLqy8KCT2PflCpzcvwVYhcSYOuBHG1E5cBYpPpPRHlUAhyPE+nH1FF+g==",
+  "dgSpecHash": "AM0/waJdogVr02P8DymEEn8+C34jDkB7Nqv7ufZHU8IDznHSabvd7a95FOBw0wlZRYNiLmpvmWIsTKmr67KXww==",
   "success": true,
   "projectFilePath": "C:\\Projects\\CoffeeDelivery\\CoffeeDelivery\\CoffeeDelivery.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\T-GAMER\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
+    "C:\\Users\\T-GAMER\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\T-GAMER\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\T-GAMER\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\T-GAMER\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.4\\microsoft.entityframeworkcore.7.0.4.nupkg.sha512",
     "C:\\Users\\T-GAMER\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.4\\microsoft.entityframeworkcore.abstractions.7.0.4.nupkg.sha512",
     "C:\\Users\\T-GAMER\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.4\\microsoft.entityframeworkcore.analyzers.7.0.4.nupkg.sha512",
