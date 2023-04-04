@@ -54,3 +54,11 @@ C:\Projects\CoffeeDelivery\CoffeeDelivery\obj\Debug\net6.0\CoffeeDelivery.genrun
 C:\Projects\CoffeeDelivery\CoffeeDelivery\obj\Debug\net6.0\ref\CoffeeDelivery.dll
 C:\Projects\CoffeeDelivery\CoffeeDelivery\bin\Debug\net6.0\AutoMapper.dll
 C:\Projects\CoffeeDelivery\CoffeeDelivery\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Projects\CoffeeDelivery\CoffeeDelivery\bin\Debug\net6.0\Castle.Core.dll
+C:\Projects\CoffeeDelivery\CoffeeDelivery\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Projects\CoffeeDelivery\CoffeeDelivery\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Projects\CoffeeDelivery\CoffeeDelivery\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Projects\CoffeeDelivery\CoffeeDelivery\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Proxies.dll
+C:\Projects\CoffeeDelivery\CoffeeDelivery\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+C:\Projects\CoffeeDelivery\CoffeeDelivery\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Projects\CoffeeDelivery\CoffeeDelivery\bin\Debug\net6.0\System.Security.Permissions.dll

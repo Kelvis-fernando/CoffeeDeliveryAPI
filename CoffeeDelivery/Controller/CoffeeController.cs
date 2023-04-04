@@ -2,6 +2,7 @@
 using CoffeeDelivery.Context;
 using CoffeeDelivery.Models;
 using CoffeeDelivery.Models.DTO;
+using CoffeeDelivery.Services;
 using Microsoft.AspNetCore.Mvc;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -23,7 +24,7 @@ namespace CoffeeDelivery.Controller
         public IActionResult CreateCoffee([FromBody] CreateCoffeeDto coffeeDto)
         {
             Coffee coffee = _mapper.Map<Coffee>(coffeeDto);
-
+            
             _context.Coffee.Add(coffee);
             _context.SaveChanges();
             return CreatedAtAction(nameof(GetCoffeeById), new { Id = coffee.Id }, coffee);
