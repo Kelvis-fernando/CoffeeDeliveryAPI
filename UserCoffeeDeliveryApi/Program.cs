@@ -1,20 +1,18 @@
-using CoffeeDelivery.Context;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using UserCoffeeDeliveryAPI.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionStringMySql = builder.Configuration.GetConnectionString("MovieConnection");
+var connectionStringMySql = builder.Configuration.GetConnectionString("UserConnection");
 builder.Services.AddDbContext<UserDbContext>(options => options.UseMySql(
     connectionStringMySql,
     ServerVersion.Parse("10.4.22-MariaDB")
     ));
 
-builder.Services.AddControllers();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -28,20 +26,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-#region [Cors]
-builder.Services.AddCors();
-#endregion
-
 app.UseHttpsRedirection();
-
-#region [Cors]
-app.UseCors(cors =>
-{
-    cors.AllowAnyHeader();
-    cors.AllowAnyMethod();
-    cors.AllowAnyOrigin();
-});
-#endregion
 
 app.UseAuthorization();
 

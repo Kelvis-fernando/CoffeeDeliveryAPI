@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\CoffeeDelivery\\UserCoffeeDeliveryApi\\UserCoffeeDeliveryApi.csproj": {}
+    "C:\\Projects\\CoffeeDelivery\\UserCoffeeDeliveryAPI\\UserCoffeeDeliveryAPI.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\CoffeeDelivery\\UserCoffeeDeliveryApi\\UserCoffeeDeliveryApi.csproj": {
+    "C:\\Projects\\CoffeeDelivery\\UserCoffeeDeliveryAPI\\UserCoffeeDeliveryAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\CoffeeDelivery\\UserCoffeeDeliveryApi\\UserCoffeeDeliveryApi.csproj",
-        "projectName": "UserCoffeeDeliveryApi",
-        "projectPath": "C:\\Projects\\CoffeeDelivery\\UserCoffeeDeliveryApi\\UserCoffeeDeliveryApi.csproj",
+        "projectUniqueName": "C:\\Projects\\CoffeeDelivery\\UserCoffeeDeliveryAPI\\UserCoffeeDeliveryAPI.csproj",
+        "projectName": "UserCoffeeDeliveryAPI",
+        "projectPath": "C:\\Projects\\CoffeeDelivery\\UserCoffeeDeliveryAPI\\UserCoffeeDeliveryAPI.csproj",
         "packagesPath": "C:\\Users\\T-GAMER\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\CoffeeDelivery\\UserCoffeeDeliveryApi\\obj\\",
+        "outputPath": "C:\\Projects\\CoffeeDelivery\\UserCoffeeDeliveryAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\T-GAMER\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -56,6 +56,12 @@
               "target": "Package",
               "version": "[7.0.4, )"
             },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
             "Microsoft.EntityFrameworkCore.Proxies": {
               "target": "Package",
               "version": "[7.0.4, )"
@@ -69,10 +75,6 @@
             "Microsoft.Extensions.Identity.Stores": {
               "target": "Package",
               "version": "[7.0.4, )"
-            },
-            "MySql.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[7.0.0, )"
             },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",

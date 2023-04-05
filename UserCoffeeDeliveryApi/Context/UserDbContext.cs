@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using UserCoffeeDeliveryAPI.Modal;
 
-namespace CoffeeDelivery.Context
+namespace UserCoffeeDeliveryAPI.Context
 {
-    public class UserDbContext : IdentityDbContext<IdentityUser<int>, IdentityRole<int>, int>
+    public class UserDbContext : DbContext
     {
-        public UserDbContext(DbContextOptions<UserDbContext> options) : base(options)
+        public UserDbContext(DbContextOptions<UserDbContext> options ) : base(options)
         {
 
         }
+
+        public DbSet<User> Users { get; set; }
     }
-    
 }
