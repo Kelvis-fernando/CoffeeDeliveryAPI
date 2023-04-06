@@ -12,11 +12,11 @@ namespace UserCoffeeDeliveryAPI.Controller
     [ApiController]
     [Route("/v1/[controller]")]
 
-    public class UserController : ControllerBase
+    public class RegisterController : ControllerBase
     {
         private RegisterService _registerService;
 
-        public UserController(RegisterService registerService)
+        public RegisterController(RegisterService registerService)
         {
           _registerService= registerService;
         }
