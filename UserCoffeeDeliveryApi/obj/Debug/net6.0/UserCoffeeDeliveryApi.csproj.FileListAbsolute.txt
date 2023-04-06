@@ -62,3 +62,4 @@ C:\Projects\CoffeeDelivery\UserCoffeeDeliveryAPI\obj\Debug\net6.0\refint\UserCof
 C:\Projects\CoffeeDelivery\UserCoffeeDeliveryAPI\obj\Debug\net6.0\UserCoffeeDeliveryAPI.pdb
 C:\Projects\CoffeeDelivery\UserCoffeeDeliveryAPI\obj\Debug\net6.0\UserCoffeeDeliveryAPI.genruntimeconfig.cache
 C:\Projects\CoffeeDelivery\UserCoffeeDeliveryAPI\obj\Debug\net6.0\ref\UserCoffeeDeliveryAPI.dll
+C:\Projects\CoffeeDelivery\UserCoffeeDeliveryAPI\bin\Debug\net6.0\FluentResults.dll

@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UserCoffeeDeliveryAPI.Context;
 using UserCoffeeDeliveryAPI.Modal;
 using UserCoffeeDeliveryAPI.Models.Dto;
+using UserCoffeeDeliveryAPI.Services;
 
 namespace UserCoffeeDeliveryAPI.Controller
 {
@@ -12,52 +14,19 @@ namespace UserCoffeeDeliveryAPI.Controller
 
     public class UserController : ControllerBase
     {
-        private UserDbContext _context;
-        private IMapper _mapper;
+        private RegisterService _registerService;
 
-        public UserController(UserDbContext context, IMapper mapper)
+        public UserController(RegisterService registerService)
         {
-            _context = context;
-            _mapper = mapper;
+          _registerService= registerService;
         }
 
         [HttpPost]
-        public async Task<IActionResult> RegisterUser(CreateUserDto model)
+        public IActionResult RegisterUser(CreateUserDto createDto)
         {
-            var existingUser = await _context.Users.FirstOrDefaultAsync(user => user.Username == model.Username);
-
-            if (existingUser != null)
-            {
-                return BadRequest("Username already exists.");
-            }
-
-            var user = _mapper.Map<User>(model);
-            await _context.Users.AddAsync(user);
-            await _context.SaveChangesAsync();
-
+            Result result = _registerService.RegisterUser(createDto);
+            if (result.IsFailed) return StatusCode(500);
             return Ok();
-        }
-
-        [HttpGet]
-        public IEnumerable<User> GetUsers()
-        {
-            return _context.Users;
-        }
-
-        [HttpDelete("{id}")]
-
-        public IActionResult DeleteUser(int id)
-        {
-            User user = _context.Users.FirstOrDefault(user => user.Id == id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            _context.Users.Remove(user);
-            _context.SaveChanges();
-            return NoContent();
         }
     }
 }
