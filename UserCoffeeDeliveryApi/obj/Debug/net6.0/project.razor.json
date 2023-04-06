@@ -1,6 +1,6 @@
 {
-  "SerializedFilePath": "c:\\Projects\\CoffeeDelivery\\CoffeeDelivery\\obj\\Debug\\net6.0\\project.razor.json",
-  "FilePath": "c:\\Projects\\CoffeeDelivery\\CoffeeDelivery\\CoffeeDelivery.csproj",
+  "SerializedFilePath": "c:\\Projects\\CoffeeDelivery\\UserCoffeeDeliveryAPI\\obj\\Debug\\net6.0\\project.razor.json",
+  "FilePath": "c:\\Projects\\CoffeeDelivery\\UserCoffeeDeliveryAPI\\UserCoffeeDeliveryAPI.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "6.0",
@@ -18371,7 +18371,7 @@
     ],
     "CSharpLanguageVersion": 1000
   },
-  "RootNamespace": "CoffeeDelivery",
+  "RootNamespace": "UserCoffeeDeliveryAPI",
   "Documents": [],
   "SerializationFormat": "0.3"
 }
