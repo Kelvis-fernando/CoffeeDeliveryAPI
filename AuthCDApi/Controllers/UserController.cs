@@ -2,6 +2,7 @@
 using AuthCDApi.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 
 namespace AuthCDApi.Controllers
@@ -44,6 +45,29 @@ namespace AuthCDApi.Controllers
             return Ok(user);
         }
 
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] UserLoginRequest request)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(user => user.Email == request.Email);
+
+            if (user == null)
+            {
+                return BadRequest("Usuario nao encontrado!");
+            }
+
+            if (!VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
+            {
+                return BadRequest("A senha esta incorreta!");
+            }
+
+            if (user.VerifiedAt == null)
+            {
+                return BadRequest("Usuario nao verificado!");
+            }
+
+            return Ok($"Bem vindo novamente, {user.Name}!");
+        }
+
         private string CreateRandomToken()
         {
             return Convert.ToHexString(RandomNumberGenerator.GetBytes(64));
@@ -55,6 +79,15 @@ namespace AuthCDApi.Controllers
             {
                 passwordSalt = hmac.Key;
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            }
+        }
+
+        private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+        {
+            using (var hmac = new HMACSHA512(passwordSalt))
+            {
+                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                return computedHash.SequenceEqual(passwordHash);
             }
         }
     }
