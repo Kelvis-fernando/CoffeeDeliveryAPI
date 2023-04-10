@@ -10,7 +10,7 @@ namespace AuthCDApi.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=userdb;Trusted_Connection=True;TrustServerCertificate=True;");
         }
 
         public DbSet<User> Users => Set<User>();
