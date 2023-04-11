@@ -84,6 +84,23 @@ namespace AuthCDApi.Controllers
             return Ok("Usuario verificado!");
         }
 
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword(string email)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(user => user.Email == email);
+
+            if (user == null)
+            {
+                return BadRequest("Usuario nao encontrado!");
+            }
+
+            user.PasswordResetToken = CreateRandomToken();
+            user.ResetTokenExpires = DateTime.Now.AddDays(1);
+            await _context.SaveChangesAsync();
+
+            return Ok("Token para resetar a senha foi enviado!");
+        }
+
         private string CreateRandomToken()
         {
             return Convert.ToHexString(RandomNumberGenerator.GetBytes(64));
