@@ -19,7 +19,7 @@ namespace AuthCDApi.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody]UserRegisterRequest request)
+        public async Task<IActionResult> Register([FromBody] UserRegisterRequest request)
         {
             if (_context.Users.Any(user => user.Email == request.Email))
             {
@@ -27,16 +27,17 @@ namespace AuthCDApi.Controllers
             }
 
             CreatePasswordHash(request.Password,
-                out byte[] passwordHash, 
+                out byte[] passwordHash,
                 out byte[] passwordSalt);
 
-            var user = new User { 
+            var user = new User
+            {
                 Name = request.Name,
                 Email = request.Email,
                 TypeOfUser = request.TypeOfUser,
                 PasswordHash = passwordHash,
-                PasswordSalt = passwordSalt, 
-                VerificationToken = CreateRandomToken() 
+                PasswordSalt = passwordSalt,
+                VerificationToken = CreateRandomToken()
             };
 
             _context.Users.Add(user);
@@ -99,6 +100,28 @@ namespace AuthCDApi.Controllers
             await _context.SaveChangesAsync();
 
             return Ok("Token para resetar a senha foi enviado!");
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordRequest request)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(user => user.PasswordResetToken == request.Token);
+
+            if (user == null || user.ResetTokenExpires < DateTime.Now)
+            {
+                return BadRequest("Token enviado invalido!");
+            }
+
+            CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
+
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+            user.PasswordResetToken = null;
+            user.ResetTokenExpires = null;
+
+            await _context.SaveChangesAsync();
+
+            return Ok("Senha trocada com sucesso!");
         }
 
         private string CreateRandomToken()
