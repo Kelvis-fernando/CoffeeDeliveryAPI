@@ -68,6 +68,22 @@ namespace AuthCDApi.Controllers
             return Ok($"Bem vindo novamente, {user.Name}!");
         }
 
+        [HttpPost("verify/{token}")]
+        public async Task<IActionResult> Verify(string token)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(user => user.VerificationToken == token);
+
+            if (user == null)
+            {
+                return BadRequest("Token invalido!");
+            }
+
+            user.VerifiedAt = DateTime.Now;
+            await _context.SaveChangesAsync();
+
+            return Ok("Usuario verificado!");
+        }
+
         private string CreateRandomToken()
         {
             return Convert.ToHexString(RandomNumberGenerator.GetBytes(64));
