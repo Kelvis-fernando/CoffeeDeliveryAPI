@@ -1,9 +1,13 @@
 ﻿using AuthCDApi.Data;
 using AuthCDApi.Models;
+using MailKit.Security;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MimeKit.Text;
+using MimeKit;
 using System.Security.Cryptography;
+using MailKit.Net.Smtp;
 
 namespace AuthCDApi.Controllers
 {
@@ -89,6 +93,7 @@ namespace AuthCDApi.Controllers
         public async Task<IActionResult> ForgotPassword(string email)
         {
             var user = await _context.Users.FirstOrDefaultAsync(user => user.Email == email);
+            var emailToSend = new MimeMessage();
 
             if (user == null)
             {
@@ -98,6 +103,17 @@ namespace AuthCDApi.Controllers
             user.PasswordResetToken = CreateRandomToken();
             user.ResetTokenExpires = DateTime.Now.AddDays(1);
             await _context.SaveChangesAsync();
+
+            emailToSend.From.Add(MailboxAddress.Parse("cleve.schamberger51@ethereal.email"));
+            emailToSend.To.Add(MailboxAddress.Parse(email));
+            emailToSend.Subject = "Reset your password";
+            emailToSend.Body = new TextPart(TextFormat.Html) { Text = $"<a target=\"_blank\" href=\"http://localhost:3000/reset-password/{user.PasswordResetToken}\">Alterar a sua senha</a>" };
+
+            using var smtp = new SmtpClient();
+            smtp.Connect("smtp.ethereal.email", 587, SecureSocketOptions.StartTls);
+            smtp.Authenticate("cleve.schamberger51@ethereal.email", "Q55wUCqngKaKYAAApV");
+            smtp.Send(emailToSend);
+            smtp.Disconnect(true);
 
             return Ok("Token para resetar a senha foi enviado!");
         }
@@ -122,6 +138,24 @@ namespace AuthCDApi.Controllers
             await _context.SaveChangesAsync();
 
             return Ok("Senha trocada com sucesso!");
+        }
+
+        [HttpPost("email")]
+        public IActionResult SendEmail()
+        {
+            var email = new MimeMessage();
+            email.From.Add(MailboxAddress.Parse("cleve.schamberger51@ethereal.email"));
+            email.To.Add(MailboxAddress.Parse("cleve.schamberger51@ethereal.email"));
+            email.Subject = "Reset your password";
+            email.Body = new TextPart(TextFormat.Html) { Text = $"<h1>Meu teste de body</h1>" };
+
+            using var smtp = new SmtpClient();
+            smtp.Connect("smtp.ethereal.email", 587, SecureSocketOptions.StartTls);
+            smtp.Authenticate("cleve.schamberger51@ethereal.email", "Q55wUCqngKaKYAAApV");
+            smtp.Send(email);
+            smtp.Disconnect(true);
+
+            return Ok();
         }
 
         private string CreateRandomToken()
