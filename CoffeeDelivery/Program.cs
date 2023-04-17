@@ -12,6 +12,11 @@ builder.Services.AddDbContext<CoffeeDbContext>(options => options.UseMySql(
     ServerVersion.Parse("10.4.22-MariaDB")
     ));
 
+builder.Services.AddDbContext<RequestItemDbContext>(options => options.UseMySql(
+    connectionStringMySql,
+    ServerVersion.Parse("10.4.22-MariaDB")
+    ));
+
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
